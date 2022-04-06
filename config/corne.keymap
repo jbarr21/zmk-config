@@ -54,6 +54,10 @@
 };
 
 / {
+    combos {
+        #include "combos.dtsi"
+    };
+
     behaviors {
         ulck: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
