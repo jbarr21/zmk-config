@@ -8,6 +8,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/outputs.h>
 
 // Layer aliases
 #define DEF 0
@@ -81,7 +82,7 @@
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &sk HYPER     &kp Z         &kp X         &kp C         &kp V         &kp B             &kp K         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &sk MEH 
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                               &lt MOU EMOJ  &lt NAV BSPC  &lt NUM TAB       &mt LSFT RET  &lt SYM SPACE &lt IDE ALFR
+                                               &lt MOU ESC   &lt NAV BSPC  &lt NUM TAB       &mt LSFT RET  &lt SYM SPACE &lt IDE ALFR
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
             >;
         };
@@ -120,11 +121,11 @@
             label = "MOU";
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &none         &none         &none         &none         &none         &none             &none         &kp HIST_BK   &kp TAB_LT    &kp TAB_RT    &kp HIST_FW   &none
+     &bootloader   &none         &none         &none         &none         &none             &none         &kp HIST_BK   &kp TAB_LT    &kp TAB_RT    &kp HIST_FW   &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &none             &kp F16       &none         &none         &none         &none         &none
+     &to LCK       &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &out OUT_USB      &kp F16       &none         &none         &none         &none         &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &bt BT_CLR    &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &none             &none         &none         &none         &none         &none         &none
+     &reset        &bt BT_CLR    &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &out OUT_BLE      &none         &none         &none         &none         &none         &none
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                                &none         &none         &none             &none         &none         &none
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
@@ -165,11 +166,11 @@
             label = "IDE";
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &to LCK       &none         &none         &none         &none         &none             &none         &none         &kp W         &none         &none         &none
+     &none         &none         &none         &none         &none         &none             &none         &none         &kp W         &none         &none         &bootloader
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &none         &kp CLS_METH  &none         &kp FIND_USE  &kp RENAME    &none             &none         &kp A         &kp S         &kp D         &none         &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &kp DBG_OVER  &kp DBG_IN    &kp DBG_OUT   &kp DBG_RES   &kp DBG_EVAL      &none         &none         &none         &none         &none         &none
+     &none         &kp DBG_OVER  &kp DBG_IN    &kp DBG_OUT   &kp DBG_RES   &kp DBG_EVAL      &none         &none         &none         &none         &none         &reset
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                                &none         &none         &none             &none         &none         &none
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
