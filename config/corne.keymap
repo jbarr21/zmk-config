@@ -158,9 +158,9 @@
             label = "IDE";
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &bootloader   &none         &none         &none         &none         &none             &none         &none         &kp W         &none         &none         &bootloader
+     &bootloader   &none         &none         &none         &none         &none             &none         &none         &kp W         &none        &ext_power EP_ON &bootloader
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &kp CLS_METH  &none         &kp FIND_USE  &kp RENAME    &none             &out OUT_USB  &kp A         &kp S         &kp D         &none         &none
+     &none         &kp CLS_METH  &none         &kp FIND_USE  &kp RENAME    &none             &out OUT_USB  &kp A         &kp S         &kp D        &ext_power EP_OFF &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &reset        &kp DBG_OVER  &kp DBG_IN    &kp DBG_OUT   &kp DBG_RES   &kp DBG_EVAL      &out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_CLR    &reset
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
