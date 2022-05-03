@@ -12,13 +12,12 @@
 
 // Layer aliases
 #define DEF 0
-#define NAV 1
-#define NUM 2
-#define MOU 3
-#define SYM 4
-#define FUN 5
-#define IDE 6
-#define LCK 7
+#define SYM 1
+#define NAV 2
+#define NUM 3
+#define FUN 4
+#define IDE 5
+#define LCK 6
 
 // Define shortcuts
 #define EMOJ     LG(LC(SPACE))
