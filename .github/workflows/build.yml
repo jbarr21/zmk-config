@@ -30,7 +30,7 @@ jobs:
     - name: Prepare Selenium
       uses: nanasess/setup-chromedriver@master
     - name: Download image
-      run: pipenv run python zmk2kle.py -l -i config/corne.keymap
+      run: pipenv run python zmk2kle.py -l -i config/3x6.keymap
     - name: Upload image
       uses: actions/upload-artifact@v2
       with:
