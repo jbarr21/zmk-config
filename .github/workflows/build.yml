@@ -87,6 +87,9 @@ jobs:
           echo ::set-output name=display-name::${DISPLAY_NAME}
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          repository: ftc/zmk
+          ref: mouse-ftc
       - name: Cache west modules
         uses: actions/cache@v2
         env:
