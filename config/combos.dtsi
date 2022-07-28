@@ -20,7 +20,7 @@ compatible = "zmk,combos";
 COMBO(capsword, &caps_word,    8 26, LCK, 50)
 COMBO(hyper,    &sk HYPER,     2  3, DEF, 50)
 COMBO(meh,      &sk MEH,       8  9, DEF, 50)
-COMBO(emoj,     &kp EMOJ,     27 32, DEF, 50)
+// COMBO(emoj,     &kp EMOJ,     27 32, DEF, 50)
 
 COMBO(lock,     &to LCK,       7 26, DEF, 50)
 COMBO(unlock,   &to DEF,       8 26, LCK, 50)

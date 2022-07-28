@@ -17,7 +17,8 @@
 #define NUM 3
 #define FUN 4
 #define IDE 5
-#define LCK 6
+#define MOU 6
+#define LCK 7
 
 // Define shortcuts
 #define EMOJ     LG(LC(SPACE))
@@ -26,6 +27,7 @@
 #define HIST_FW  LG(RBKT)
 #define TAB_LT   LS(LG(LBKT))
 #define TAB_RT   LS(LG(RBKT))
+#define APP_WIN  LG(GRAVE)
 #define HYPER    LG(LS(LA(LCTRL)))
 #define MEH      LS(LA(LCTRL))
 
@@ -40,13 +42,13 @@
 #define DBG_EVAL LA(F8)
 
 &mt {
-    flavor = "tap-preferred";
-    tapping-term-ms = <200>;
+    flavor = "balanced";
+    tapping-term-ms = <175>;
 };
 
 &lt {
     flavor = "balanced";
-    tapping-term-ms = <200>;
+    tapping-term-ms = <175>;
 };
 
 &sk {
@@ -66,12 +68,20 @@
         #include "combos.dtsi"
     };
 
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <NAV SYM>;
+            then-layer = <NUM>;
+        };
+    };
+
     behaviors {
         ulck: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
             label = "td_unlock";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>;
             bindings = <&none>, <&to DEF>;
         };
     };
@@ -87,9 +97,9 @@
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &kp ESC       &mt LCTRL A   &mt LALT R    &mt LSHFT S   &mt LGUI T    &kp D             &kp H         &mt RGUI N    &mt RSHFT E   &mt LALT I    &mt RCTRL O   &kp APOS
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &kp Z         &kp X         &kp C         &kp V         &kp B             &kp K         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &sl IDE 
+     &sl FUN       &kp Z         &kp X         &kp C         &kp V         &kp B             &kp K         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &sl IDE 
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                               &kp BSPC      &lt NAV BSPC  &lt NUM TAB       &mt LSFT RET  &lt SYM SPACE &kp RET
+                                               &lt MOU TAB   &lt NAV BSPC  &sk LSHFT         &kp RET       &lt SYM SPACE &sl IDE 
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
             >;
         };
@@ -115,7 +125,7 @@
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
      &none         &kp C_PREV    &kp C_STOP    &kp C_PP      &kp C_NEXT    &kp C_VOL_UP      &none         &kp HIST_BK   &kp TAB_LT    &kp TAB_RT    &kp HIST_FW   &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &kp C_VOL_DN      &kp LG(GRAVE) &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &none
+     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &kp C_VOL_DN      &kp APP_WIN   &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &none         &kp LG(Z)     &kp LG(X)     &kp LG(C)     &kp LG(V)     &kp C_MUTE        &none         &kp HOME      &kp PG_DN     &kp PG_UP     &kp END       &none
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
@@ -130,11 +140,11 @@
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
      &none         &none         &none         &none         &none         &none             &none         &kp N7        &kp N8        &kp N9        &none         &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &none             &none         &kp N4        &kp N5        &kp N6        &none         &none
+     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &none             &none         &kp N4        &kp N5        &kp N6        &kp N0        &kp KP_DOT
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &none         &none         &none         &none         &sl FUN       &none             &none         &kp N1        &kp N2        &kp N3        &none         &none
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                               &none         &none         &none             &kp RET       &kp KP_DOT    &kp N0
+                                               &none         &none         &none             &none         &none         &none
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
             >;
         };
@@ -167,6 +177,21 @@
                                                &none         &none         &none             &none         &none         &none
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
             >;
+        };
+
+        layer_mouse {
+            label = "MOU";
+            bindings = <
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     &none         &none         &none         &none         &none         &none             &none         &none         &none         &none         &none         &none
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &none             &kp F16       &none         &none         &none         &none         &none
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &none         &none         &none         &none         &none         &none             &none         &none         &none         &none         &none         &none
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                               &none         &none         &none             &none         &none         &none
+//                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+            >;        
         };
 
         layer_lockout {
