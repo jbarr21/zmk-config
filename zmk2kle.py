@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from sys import argv
 from textwrap import dedent
+import argparse
 import urllib.parse
 
 # KLE JSON for a 3x6+3
@@ -228,20 +229,20 @@ def download_wait(directory, timeout, nfiles=None):
     return seconds
 
 if __name__ == '__main__':
-
-    if len(argv) < 2 or len(argv) > 4 or argv[len(argv)-1].startswith('-'):
-        exit("Usage: ./qmk2kle.py [-l] [-i] <filename>")
-
-    link_only = '-l' in argv
+    parser = argparse.ArgumentParser(description='Convert ZMK layout to KLE image')
+    parser.add_argument('keymap', type=str, help='Path to keymap file')
+    parser.add_argument('-i', '--save_image', help='Save the KLE image', action='store_true')
+    parser.add_argument('-l', '--link_only', help='Show KLE link instead of KLE raw data', action='store_true')
+    args = parser.parse_args()
 
     try:
-        layout = Layout(argv[len(argv)-1])
-        if link_only:
+        layout = Layout(args.keymap)
+        if args.link_only:
             print(layout.to_kle_url())
         else:
             print(layout.to_kle())
 
-        if '-i' in argv:
+        if args.save_image in argv:
             save_image(layout.to_kle_url())
 
     except Exception as ex:
