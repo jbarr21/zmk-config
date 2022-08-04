@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 argparse = "*"
 selenium = "*"
+tree_sitter = "*"
 
 [dev-packages]
 
