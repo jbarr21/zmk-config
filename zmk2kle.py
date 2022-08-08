@@ -245,5 +245,5 @@ if __name__ == '__main__':
     keymap = parse_keymap(args.keymap)
     print(keymap.to_kle_url() if args.link_only else keymap.to_kle())
 
-    if args.save_image in argv:
+    if args.save_image:
         save_image(keymap.to_kle_url())
