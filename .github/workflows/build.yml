@@ -113,12 +113,12 @@ jobs:
       run: |
         wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.6/tree-sitter-linux-x64.gz
         gzip -d tree-sitter-linux-x64.gz
-        mv tree-sitter-linux-x64 tree-sitter-devicetree/tree-sitter
+        mv tree-sitter-linux-x64 $GITHUB_WORKSPACE/tree-sitter
     - name: Generate tree-sitter-devicetree .so
       run: |
         pushd tree-sitter-devicetree
-        tree-sitter generate
-        tree-sitter parse test/corpus/keymap.txt || true
+        $GITHUB_WORKSPACE/tree-sitter generate
+        $GITHUB_WORKSPACE/tree-sitter parse test/corpus/keymap.txt || true
         find "$HOME/.cache/tree-sitter" -name '*.so'
         popd
     - name: Launch browser
