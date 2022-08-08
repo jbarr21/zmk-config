@@ -113,7 +113,7 @@ jobs:
       uses: actions-rs/install@v0.1
       with:
         crate: tree-sitter-cli
-        version: latest
+        version: v0.20.6
         use-tool-cache: true
     - name: Generate tree-sitter-devicetree .so
       run: |
