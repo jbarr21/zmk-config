@@ -114,6 +114,7 @@ jobs:
         wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.6/tree-sitter-linux-x64.gz
         gzip -d tree-sitter-linux-x64.gz
         mv tree-sitter-linux-x64 $GITHUB_WORKSPACE/tree-sitter
+        chmod +x $GITHUB_WORKSPACE/tree-sitter
     - name: Generate tree-sitter-devicetree .so
       run: |
         pushd tree-sitter-devicetree
