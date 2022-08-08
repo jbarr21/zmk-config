@@ -110,11 +110,10 @@ jobs:
         # Optional: do not specify to match Chrome's version
         chromedriver-version: '88.0.4324.96'
     - name: Install tree-sitter-cli
-      uses: actions-rs/install@v0.1
-      with:
-        crate: tree-sitter-cli
-        version: 0.20.6
-        use-tool-cache: true
+      run: |
+        wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.6/tree-sitter-linux-x64.gz
+        gzip -d tree-sitter-linux-x64.gz
+        mv tree-sitter-linux-x64 tree-sitter-devicetree/tree-sitter
     - name: Generate tree-sitter-devicetree .so
       run: |
         pushd tree-sitter-devicetree
