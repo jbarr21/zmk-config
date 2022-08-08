@@ -114,6 +114,7 @@ jobs:
       with:
         crate: tree-sitter-cli
         version: latest
+        use-tool-cache: true
     - name: Generate tree-sitter-devicetree .so
       run: |
         pushd tree-sitter-devicetree
