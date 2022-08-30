@@ -19,7 +19,8 @@
 #define FUN 4
 #define IDE 5
 #define MOU 6
-#define LCK 7
+#define MED 7
+#define LCK 8
 
 // Define shortcuts
 #define VIMAC    LG(LS(LA(LC(F))))
@@ -147,7 +148,7 @@
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &kp ESC       &mt LCTRL A   &mt LALT R    &mt LSHFT S   &mt LGUI T    &kp D             &kp H         &mt RGUI N    &mt RSHFT E   &mt LALT I    &mt RCTRL O   &kp SQT
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &kp Z         &kp X         &kp C         &kp V         &kp B             &kp K         &kp M         &com_dqt      &dot_sqt      &kp FSLH      &none
+     &none         &lt MED Z     &kp X         &kp C         &kp V         &kp B             &kp K         &kp M         &com_dqt      &dot_sqt      &lt MED FSLH      &none
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                                &lt MOU ESC   &lt NAV BSPC  &lt NUM TAB       &lt IDE RET   &lt SYM SPACE &lt FUN DEL
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
@@ -173,11 +174,11 @@
             label = "NAV";            
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &none         &kp C_PREV    &kp LG(W)     &kp C_PP      &kp C_NEXT    &kp C_VOL_UP      &none         &kp HIST_BK   &kp TAB_LT    &kp TAB_RT    &kp HIST_FW   &none
+     &none         &none         &none         &none         &none         &none             &none         &kp HIST_BK   &kp TAB_LT    &kp TAB_RT    &kp HIST_FW   &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &kp C_VOL_DN      &kp APP_WIN   &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &none
+     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &none             &kp APP_WIN   &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &kp LG(Z)     &kp LG(X)     &kp LG(C)     &kp LG(V)     &kp C_MUTE        &none         &kp HOME      &kp PG_DN     &kp PG_UP     &kp END       &none
+     &none         &none         &none         &none         &none         &none             &none         &kp HOME      &kp PG_DN     &kp PG_UP     &kp END       &none
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                                &none         &none         &none             &none         &trans        &none
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
@@ -233,13 +234,28 @@
             label = "MOU";
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &bootloader   &none         &none      &ext_power EP_OFF &ext_power EP_ON  &none        &none         &none         &none         &none         &none         &bootloader
+     &bootloader   &none         &none         &none         &none         &none             &none         &none         &none         &none         &none         &bootloader
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &out OUT_USB      &kp F16       &mmv MS_LEFT  &mmv MS_DOWN  &mmv MS_UP    &mmv MS_RIGHT &none
+     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &none             &kp F16       &mmv MS_LEFT  &mmv MS_DOWN  &mmv MS_UP    &mmv MS_RIGHT &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &reset        &bt BT_CLR    &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &out OUT_BLE      &none         &mwh WH_LEFT  &mwh WH_DOWN  &mwh WH_UP    &mwh WH_RIGHT &reset
+     &reset        &none         &none         &none         &none         &none             &none         &mwh WH_LEFT  &mwh WH_DOWN  &mwh WH_UP    &mwh WH_RIGHT &reset
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                                &none         &none         &none             &none         &mkp MB1      &mkp MB2
+//                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+            >;        
+        };
+
+     layer_media {
+            label = "MED";
+            bindings = <
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     &none         &none         &none         &none         &none         &none             &none         &none         &none         &none         &none         &none
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &none         &kp C_PREV    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT    &ext_power EP_TOG &none         &sk LGUI      &sk LSHFT     &sk LALT      &sk LCTRL     &none
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &none         &bt BT_CLR    &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &out OUT_TOG      &none         &none         &none         &none         &none         &none
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                               &none         &kp C_PP      &kp C_MUTE        &none         &none         &none
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
             >;        
         };
