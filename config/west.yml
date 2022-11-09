@@ -2,12 +2,12 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: mouse-pr-remote
-      url-base: https://github.com/ftc
+    - name: lowprokb
+      url-base: https://github.com/LOWPROKB
   projects:
     - name: zmk
-      remote: mouse-pr-remote
-      revision: mouse-ftc
+      remote: lowprokb
+      revision: corne-ish-zen-v2
       import: app/west.yml
   self:
     path: config

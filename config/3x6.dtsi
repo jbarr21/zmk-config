@@ -8,7 +8,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
-#include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/outputs.h>
 
 // Layer aliases
@@ -84,18 +83,6 @@
 
 &caps_word {
     continue-list = <UNDERSCORE MINUS BSPC DEL N1 N2 N3 N4 N5 N6 N7 N8 N9 N0>;
-};
-
-&mmv {
-  acceleration-exponent = <U_MOUSE_MOVE_EXPONENT>;
-  time-to-max-speed-ms = <U_MOUSE_MOVE_TIME>;
-  delay-ms = <U_MOUSE_MOVE_DELAY>;
-};
-
-&mwh {
-  acceleration-exponent = <U_MOUSE_SCROLL_EXPONENT>;
-  time-to-max-speed-ms = <U_MOUSE_SCROLL_TIME>;
-  delay-ms = <U_MOUSE_SCROLL_DELAY>;
 };
 
 / {
@@ -236,11 +223,11 @@
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
      &bootloader   &none         &none         &none         &none         &none             &none         &none         &none         &none         &none         &bootloader
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &none             &kp F16       &mmv MS_LEFT  &mmv MS_DOWN  &mmv MS_UP    &mmv MS_RIGHT &none
+     &none         &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      &none             &kp F16       &none         &none         &none         &none         &none
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &reset        &none         &none         &none         &none         &none             &none         &mwh WH_LEFT  &mwh WH_DOWN  &mwh WH_UP    &mwh WH_RIGHT &reset
+     &reset        &none         &none         &none         &none         &none             &none         &none         &none         &none         &none         &reset
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                               &none         &none         &none             &none         &mkp MB1      &mkp MB2
+                                               &none         &none         &none             &none         &none         &none
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
             >;        
         };
