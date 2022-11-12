@@ -22,6 +22,11 @@
 #define MED 7
 #define LCK 8
 
+// Key position groups
+#define KEYS_L 0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29
+#define KEYS_R 6 7 8 9 10 18 19 20 21 22 23 30 31 32 33 34 35
+#define THUMBS 36 37 38 39 40 41
+
 // Define shortcuts
 #define VIMAC    LG(LS(LA(LC(F))))
 #define EMOJ     LG(LC(SPACE))
@@ -64,14 +69,21 @@
 #define WH_LEFT SCROLL_HOR(-U_MOUSE_SCROLL_MAX)
 #define WH_RIGHT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
 
+#define TAPPING_TERM_MS 280
+#define QUICK_TAP_MS 175
+#define GLOBAL_QUICK_TAP_MS 150
+
 &mt {
-    flavor = "balanced";
-    tapping-term-ms = <175>;
+    flavor = "tap-preferred";
+    tapping-term-ms = <220>;
+    quick-tap-ms = <220>;
+    hold-trigger-key-positions = <0>;
 };
 
 &lt {
     flavor = "balanced";
-    tapping-term-ms = <175>;
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
 };
 
 &sk {
@@ -79,6 +91,7 @@
 };
 
 &sl {
+    ignore-modifiers;
     release-after-ms = <5000>;
 };
 
@@ -112,6 +125,32 @@
     }; */
 
     behaviors {
+        hml: home_mods_l {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_MT_L";
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            global-quick-tap-ms = <GLOBAL_QUICK_TAP_MS>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        hmr: home_mods_r {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOME_MT_R";
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            global-quick-tap-ms = <GLOBAL_QUICK_TAP_MS>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
         ulck: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
             label = "td_unlock";
@@ -146,9 +185,9 @@
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
      &none         &kp Q         &kp W         &kp F         &kp P         &kp G             &kp J         &kp L         &kp U         &kp Y         &kp SEMI      &kp BSLH
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &kp ESC       &mt LCTRL A   &mt LALT R    &mt LSHFT S   &mt LGUI T    &kp D             &kp H         &mt RGUI N    &mt RSHFT E   &mt LALT I    &mt RCTRL O   &kp SQT
+     &kp ESC       &hml LCTRL A  &hml LALT R   &hml LSHFT S  &hml LGUI T   &kp D             &kp H         &hmr RGUI N   &hmr RSHFT E  &hmr LALT I   &hmr RCTRL O  &kp SQT
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &none         &lt MED Z     &kp X         &kp C         &kp V         &kp B             &kp K         &kp M         &com_dqt      &dot_sqt      &lt MED FSLH      &none
+     &none         &lt MED Z     &kp X         &kp C         &kp V         &kp B             &kp K         &kp M         &com_dqt      &dot_sqt      &lt MED FSLH  &none
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                                &lt MOU ESC   &lt NAV BSPC  &lt NUM TAB       &lt IDE RET   &lt SYM SPACE &lt FUN DEL
 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯

@@ -56,7 +56,7 @@ class Key:
 
         if type == 'kp':
             return KeyAction(type=type, tap=args[0], hold=None)
-        elif type in ['mt', 'lt']:
+        elif type in ['mt', 'lt', 'hml', 'hmr']:
             return KeyAction(type=type, tap=args[1], hold=args[0])
         elif type in ['sk', 'sl']:
             return KeyAction(type=type, tap=f"{args[0]}<br>{type.upper()}", hold=None)
