@@ -19,7 +19,7 @@ compatible = "zmk,combos";
 
 COMBO(capsword,  &caps_word,    3  8, DEF, 50)
 COMBO(capsword2, &caps_word,   27 32, DEF, 50)
-COMBO(hyper,     &sk HYPER,     2  3, DEF, 50)
+COMBO(hyper,     &sk HYPER,     2  3, DEF NUM, 50)
 COMBO(meh,       &sk MEH,       8  9, DEF, 50)
 COMBO(shiftL,    &sk LSHFT,    25 26, DEF, 50)
 COMBO(shiftR,    &sk RSHFT,    33 34, DEF, 50)
