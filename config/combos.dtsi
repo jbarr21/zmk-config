@@ -18,19 +18,13 @@ compatible = "zmk,combos";
         };
 
 COMBO(capsword,  &caps_word,    3  8, DEF, 50)
-COMBO(capsword2, &caps_word,   27 32, DEF, 50)
 COMBO(hyper,     &sk HYPER,     2  3, DEF NUM, 50)
 COMBO(meh,       &sk MEH,       8  9, DEF, 50)
-COMBO(shiftL,    &sk LSHFT,    25 26, DEF, 50)
-COMBO(shiftR,    &sk RSHFT,    33 34, DEF, 50)
-COMBO(shift,     &sk LSHFT,    25 34, DEF, 50)
-COMBO(shift2,    &sk LSHFT,    26 33, DEF, 50)
 
 COMBO(vimac,     &kp VIMAC,     3  7, DEF, 50)
-COMBO(tab,       &kp TAB,      26 27, DEF, 50)
-COMBO(tab2,      &kp TAB,      27 28, DEF, 50)
-COMBO(ent,       &kp RET,      32 33, DEF, 50)
-COMBO(ent2,      &kp RET,      31 32, DEF, 50)
+COMBO(vimac,     &kp VIMAC,     3  7, DEF, 50)
+COMBO(esc,       &kp ESC,      26 27, DEF, 50)
+COMBO(esc2,      &kp ESC,      27 28, DEF, 50)
 COMBO(alfrLower, &kp ALFR,     17 18, DEF, 50)
 COMBO(alfrInner, &kp ALFR,     28 31, DEF, 50)
 COMBO(cxts,      &kp CTXS,     27 32, DEF, 50)
