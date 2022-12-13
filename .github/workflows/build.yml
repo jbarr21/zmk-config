@@ -25,13 +25,13 @@ jobs:
       run: |
         wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.6/tree-sitter-linux-x64.gz
         gzip -d tree-sitter-linux-x64.gz
-        mv tree-sitter-linux-x64 $GITHUB_WORKSPACE/tree-sitter
-        chmod +x $GITHUB_WORKSPACE/tree-sitter
+        mv tree-sitter-linux-x64 $GITHUB_WORKSPACE/parser/tree-sitter
+        chmod +x $GITHUB_WORKSPACE/parser/tree-sitter
     - name: Generate tree-sitter-devicetree .so
       run: |
         pushd tree-sitter-devicetree
-        $GITHUB_WORKSPACE/tree-sitter generate
-        $GITHUB_WORKSPACE/tree-sitter parse test/corpus/keymap.txt || true
+        $GITHUB_WORKSPACE/parser/tree-sitter generate
+        $GITHUB_WORKSPACE/parser/tree-sitter parse test/corpus/keymap.txt || true
         find "$HOME/.cache/tree-sitter" -name '*.so'
         popd
     - name: Launch browser
@@ -45,13 +45,21 @@ jobs:
         python-version: 3.9
     - name: Install dependencies
       run: |
+        pushd $GITHUB_WORKSPACE/parser
         python -m pip install --upgrade pip
         pip install pipenv
         pipenv install
+        popd
     - name: Prepare Selenium
       uses: nanasess/setup-chromedriver@master
     - name: Download image
-      run: pipenv run python zmk2kle.py -l -i config/3x6.dtsi
+      run: |
+        pushd $GITHUB_WORKSPACE/parser
+        pipenv run python zmk2kle.py -l -i ../config/3x5.dtsi
+        ls -l $GITHUB_WORKSPACE || true
+        ls -l $GITHUB_WORKSPACE/parser || true
+        mv $GITHUB_WORKSPACE/parser/keyboard-layout.png $GITHUB_WORKSPACE || true
+        popd
     - name: Upload image
       uses: actions/upload-artifact@v2
       with:
