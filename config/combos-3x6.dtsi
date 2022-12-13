@@ -22,7 +22,6 @@ COMBO(hyper,     &sk HYPER,     2  3, DEF NUM, 50)
 COMBO(meh,       &sk MEH,       8  9, DEF, 50)
 
 COMBO(vimac,     &kp VIMAC,     3  7, DEF, 50)
-COMBO(vimac,     &kp VIMAC,     3  7, DEF, 50)
 COMBO(esc,       &kp ESC,      26 27, DEF, 50)
 COMBO(esc2,      &kp ESC,      27 28, DEF, 50)
 COMBO(alfrLower, &kp ALFR,     17 18, DEF, 50)

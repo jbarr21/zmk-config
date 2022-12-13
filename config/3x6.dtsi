@@ -113,7 +113,7 @@
 
 / {
     combos {
-        #include "combos.dtsi"
+        #include "combos-3x6.dtsi"
     };
 
     /* conditional_layers {
