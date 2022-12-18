@@ -4,7 +4,7 @@ name: Build
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    uses: urob/zmk/.github/workflows/build-user-config.yml@build-with-submodules
 
   render:
     runs-on: ubuntu-latest

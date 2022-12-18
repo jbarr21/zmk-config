@@ -1,1 +1,10 @@
-#include "3x6.dtsi"
+#include "../zmk-nodefree-config/keypos_def/keypos_42keys.h"
+
+#define XTR_LTO  &none
+#define XTR_LMO  &kp ESC
+#define XTR_LBO  &none
+#define XTR_RTO  &kp BSLH
+#define XTR_RMO  &kp SQT
+#define XTR_RBO  &none
+
+#include "3x5.dtsi"
