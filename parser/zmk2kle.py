@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from abc import abstractmethod
 import argparse
 import configparser
 from dataclasses import dataclass
@@ -51,8 +52,8 @@ class Key:
         return urllib.parse.quote(label).replace('/', '%2F') if encoded else label
 
     def _action(self) -> KeyAction:
-        type = self.cells[0].text.decode()[1:]
-        args = [self._legend(x.text.decode()) for x in self.cells[1:]]
+        type = self.cells[0][1:]
+        args = [self._legend(x) for x in self.cells[1:]]
 
         if type == 'kp':
             return KeyAction(type=type, tap=args[0], hold=None)
@@ -64,7 +65,7 @@ class Key:
             return KeyAction(type=type, tap=f"{args[0]}<br>{type.upper()}", hold=None)
         elif type == 'trans':
             return KeyAction(type=type, tap='___', hold=None) 
-        elif type == 'none':
+        elif type == 'none' or type == '___':
             return KeyAction(type=type, tap='', hold=None)
         else:
             tap = self._legend((type if len(args) == 0 else ' '.join(args)).upper())
@@ -177,56 +178,90 @@ def download_wait(directory, timeout, nfiles=None):
         seconds += 1
     return seconds
 
-def parse_keymap(keymap_path):
-    keymap_text = None
-    with open(keymap_path, 'r') as f:
-        keymap_text = f.read()
+class KeymapParser:
+    @abstractmethod
+    def parse_keymap(self, keymap_text) -> Keymap:
+        pass
 
-    so_path = 'devicetree.so' if not os.environ.get('GITHUB_WORKSPACE', None) else (os.environ.get('HOME')+'/.cache/tree-sitter/lib/devicetree.so')
-    DTS_LANGUAGE = Language(so_path, 'devicetree')
-    parser = Parser()
-    parser.set_language(DTS_LANGUAGE)
-    tree = parser.parse(bytes(keymap_text, 'utf8'))
-    
-    slash = [c for c in tree.root_node.children if c.type == 'node' and node_name(c) == '/'][0]
-    keymap = [c for c in slash.children if c.type == 'node' and node_name(c) == 'keymap'][0]
-    layers = [c for c in keymap.children if c.type == 'node']
-    layers = [c for c in layers if len([p for p in c.children if node_name(p) == 'bindings']) > 0]
-    keymap_layers = []
+    def parse(self, keymap_path) -> Keymap:
+        with open(keymap_path, 'r') as f:
+            keymap_text = f.read()
+            return self.parse_keymap(keymap_text)
 
-    for layer in layers:
-        name = node_name(layer)
-        bindings = [c for c in layer.children if node_name(c) == 'bindings'][0]
-        label = [x.text.decode().replace('"', '') for x in flatten([c.children for c in layer.children if node_name(c) == 'label']) if x.type == 'string_literal']
-        label = next(iter(label), None)
-        layer_cells = [c for c in bindings.children if c.type == 'integer_cells'][0].children
-        keys = []
-        cells = []
-        for i, cell in enumerate(layer_cells):
-            if cell.type != 'comment' and node_name(cell) is not None and node_name(cell) != '<':
-                cells += [cell]
+class QmkKeymapParser(KeymapParser):
+    def parse_keymap(self, keymap_text) -> Keymap:
+        pass
 
-            if (i == len(layer_cells) - 1 or layer_cells[i + 1].type == 'reference') and len(cells) > 0: 
+class ZmkNodefreeKeymapParser(KeymapParser):
+    Layer = re.compile(r'ZMK_LAYER\((\w+),(.+?(?:^\)|\Z|\())', re.DOTALL | re.MULTILINE)
+    Key = re.compile(r'(&\w+(?:\s[A-Za-z0-9]\w*)*|_{3})')
+
+    def parse_keymap(self, keymap_text) -> Keymap:
+        keymap_layers = []
+        for layer in ZmkNodefreeKeymapParser.Layer.finditer(keymap_text):
+            layer_name = layer.group(1)
+            layer_text = layer.group(2)
+            layer_key_lines = [line for line in layer_text.splitlines() if not (line.startswith('//') or line.startswith(')'))]
+            layer_text = re.sub('XTR_\w+', '', '\n'.join(layer_key_lines))
+            
+            keys = []
+            for key in ZmkNodefreeKeymapParser.Key.finditer(layer_text):
+                cells = key.group(0).strip().split(' ')
                 keys += [Key(cells)]
-                cells = []
 
-        keymap_layers += [Layer(name, label, keys)]
-       
-    return Keymap(keymap_layers, {})
+            keymap_layers += [Layer(layer_name, layer_name, keys)]
+        
+        return Keymap(keymap_layers, {}) # TODO: parse defines
 
-def flatten(l):
-    return [item for sublist in l for item in sublist]
+class ZmkKeymapParser(KeymapParser):
+    def parse_keymap(self, keymap_text) -> Keymap:
+        so_path = 'devicetree.so' if not os.environ.get('GITHUB_WORKSPACE', None) else (os.environ.get('HOME')+'/.cache/tree-sitter/lib/devicetree.so')
+        DTS_LANGUAGE = Language(so_path, 'devicetree')
+        parser = Parser()
+        parser.set_language(DTS_LANGUAGE)
+        tree = parser.parse(bytes(keymap_text, 'utf8'))
+        
+        slash = [c for c in tree.root_node.children if c.type == 'node' and ZmkKeymapParser.node_name(c) == '/'][0]
+        keymap = [c for c in slash.children if c.type == 'node' and ZmkKeymapParser.node_name(c) == 'keymap'][0]
+        layers = [c for c in keymap.children if c.type == 'node']
+        layers = [c for c in layers if len([p for p in c.children if ZmkKeymapParser.node_name(p) == 'bindings']) > 0]
+        keymap_layers = []
 
-def node_name(node):
-    if node is None or not hasattr(node, 'type'):
-        return None
-    elif node.type == 'identifier':
-        return node.text.decode()
-    else:
-        ids = [c for c in node.children if c.type == 'identifier']
-        refs = [c for c in node.children if c.type == 'reference']
-        props = [c for c in node.children if c.type == 'property']
-        return node_name(next(iter(ids + refs + props), None))
+        for layer in layers:
+            name = ZmkKeymapParser.node_name(layer)
+            bindings = [c for c in layer.children if ZmkKeymapParser.node_name(c) == 'bindings'][0]
+            label = [x.text.decode().replace('"', '') for x in ZmkKeymapParser.flatten([c.children for c in layer.children if ZmkKeymapParser.node_name(c) == 'label']) if x.type == 'string_literal']
+            label = next(iter(label), None)
+            layer_cells = [c for c in bindings.children if c.type == 'integer_cells'][0].children
+            keys = []
+            cells = []
+            for i, cell in enumerate(layer_cells):
+                if cell.type != 'comment' and ZmkKeymapParser.node_name(cell) is not None and ZmkKeymapParser.node_name(cell) != '<':
+                    cells += [cell.text.decode()]
+
+                if (i == len(layer_cells) - 1 or layer_cells[i + 1].type == 'reference') and len(cells) > 0: 
+                    keys += [Key(cells)]
+                    cells = []
+
+            keymap_layers += [Layer(name, label, keys)]
+        
+        return Keymap(keymap_layers, {})
+
+    @staticmethod
+    def flatten(l):
+        return [item for sublist in l for item in sublist]
+
+    @staticmethod
+    def node_name(node):
+        if node is None or not hasattr(node, 'type'):
+            return None
+        elif node.type == 'identifier':
+            return node.text.decode()
+        else:
+            ids = [c for c in node.children if c.type == 'identifier']
+            refs = [c for c in node.children if c.type == 'reference']
+            props = [c for c in node.children if c.type == 'property']
+            return ZmkKeymapParser.node_name(next(iter(ids + refs + props), None))
 
 def load_config():
     config = configparser.ConfigParser()
@@ -244,7 +279,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     load_config()
-    keymap = parse_keymap(args.keymap)
+    parser = ZmkNodefreeKeymapParser() # ZmkKeymapParser()
+    keymap = parser.parse(args.keymap)
     print(keymap.to_kle_url() if args.link_only else keymap.to_kle())
 
     if args.save_image:
