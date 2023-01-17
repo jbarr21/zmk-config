@@ -4,9 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-argparse = "*"
-selenium = "*"
-tree_sitter = "*"
+argparse = "1.4.0"
+selenium = "4.3.0"
+tree_sitter = "0.20.0"
 
 [dev-packages]
 

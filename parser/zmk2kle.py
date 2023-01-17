@@ -23,7 +23,7 @@ KLE_LAYOUT = dedent('''
 ''')
 
 MODS = ['LGUI', 'LSHFT', 'LALT', 'LCTRL', 'RGUI', 'RSHFT', 'RALT', 'RCTRL']
-kle_chars_needing_escaping = ['/', ';', '@', '&', '_', '=']
+kle_chars_needing_escaping = ['/', ';', '@', '&', '_', '=', ':']
 zmk_to_name = { }
 
 @dataclass
@@ -194,7 +194,7 @@ class QmkKeymapParser(KeymapParser):
 
 class ZmkNodefreeKeymapParser(KeymapParser):
     Layer = re.compile(r'ZMK_LAYER\((\w+),(.+?(?:^\)|\Z|\())', re.DOTALL | re.MULTILINE)
-    Key = re.compile(r'(&\w+(?:\s[A-Za-z0-9]\w*)*|_{3})')
+    Key = re.compile(r'(&\w+(?:\s[A-Za-z0-9]\w*)*|_{3}|_HELD_)')
 
     def parse_keymap(self, keymap_text) -> Keymap:
         keymap_layers = []
