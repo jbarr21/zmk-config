@@ -24,11 +24,11 @@
 #define LCK 8
 
 // RGB placeholders
-#define RGB_VAI XXXXXXX
-#define RGB_SAI XXXXXXX
-#define RGB_HUI XXXXXXX
-#define RGB_MOD XXXXXXX
-#define RGB_TOG XXXXXXX
+#define RGB_VAI &none
+#define RGB_SAI &none
+#define RGB_HUI &none
+#define RGB_MOD &none
+#define RGB_TOG &none
 
 // Define shortcuts
 #define ___      &none
@@ -230,7 +230,7 @@ ZMK_LAYER(MOU,
 
 ZMK_LAYER(MED,
 // ╭───────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬────────╮
-    XTR_LTO  &kp RGB_VAI   &kp RGB_SAI   &kp RGB_HUI   &kp RGB_MOD   &kp RGB_TOG       ___           ___           ___           ___           &bootloader   XTR_RTO  
+    XTR_LTO  RGB_VAI       RGB_SAI       RGB_HUI       RGB_MOD       RGB_TOG           ___           ___           ___           ___           &bootloader   XTR_RTO  
 // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────┤
     XTR_LMO  &kp C_PREV    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT    &ext_power EP_TOG ___           &sk LGUI      &sk LSHFT     &sk LALT      &sk LCTRL     XTR_RMO  
 // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────┤
