@@ -68,6 +68,7 @@ class Key:
         elif type == 'none' or type == '___':
             return KeyAction(type=type, tap='', hold=None)
         else:
+            type = self.cells[0][1:] if self.cells[0][0] == '&' else self.cells[0]
             tap = self._legend((type if len(args) == 0 else ' '.join(args)).upper())
             return KeyAction(type=type, tap=tap, hold=None)
 
@@ -194,7 +195,7 @@ class QmkKeymapParser(KeymapParser):
 
 class ZmkNodefreeKeymapParser(KeymapParser):
     Layer = re.compile(r'ZMK_LAYER\((\w+),(.+?(?:^\)|\Z|\())', re.DOTALL | re.MULTILINE)
-    Key = re.compile(r'(&\w+(?:\s[A-Za-z0-9]\w*)*|_{3}|_HELD_)')
+    Key = re.compile(r'(&\w+(?:\s[A-Za-z0-9]\w*)*|_{3}|_HELD_|RGB_\w+)')
 
     def parse_keymap(self, keymap_text) -> Keymap:
         keymap_layers = []
