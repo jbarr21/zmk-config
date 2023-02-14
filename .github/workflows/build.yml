@@ -7,68 +7,7 @@ jobs:
     uses: urob/zmk/.github/workflows/build-user-config.yml@build-with-submodules
 
   render:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }}
-    - name: Checkout tree-sitter-devicetree
-      uses: actions/checkout@v2
-      with:
-        repository: joelspadin/tree-sitter-devicetree
-        path: tree-sitter-devicetree
-    - uses: nanasess/setup-chromedriver@v1
-      with:
-        # Optional: do not specify to match Chrome's version
-        chromedriver-version: '88.0.4324.96'
-    - name: Install tree-sitter-cli
-      run: |
-        wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.6/tree-sitter-linux-x64.gz
-        gzip -d tree-sitter-linux-x64.gz
-        mv tree-sitter-linux-x64 $GITHUB_WORKSPACE/parser/tree-sitter
-        chmod +x $GITHUB_WORKSPACE/parser/tree-sitter
-    - name: Generate tree-sitter-devicetree .so
-      run: |
-        pushd tree-sitter-devicetree
-        $GITHUB_WORKSPACE/parser/tree-sitter generate
-        $GITHUB_WORKSPACE/parser/tree-sitter parse test/corpus/keymap.txt || true
-        find "$HOME/.cache/tree-sitter" -name '*.so'
-        popd
-    - name: Launch browser
-      run: |
-        export DISPLAY=:99
-        chromedriver --url-base=/wd/hub &
-        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
-    - name: Set up Python 3
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - name: Install dependencies
-      run: |
-        pushd $GITHUB_WORKSPACE/parser
-        python -m pip install --upgrade pip
-        pip install pipenv
-        pipenv install
-        popd
-    - name: Prepare Selenium
-      uses: nanasess/setup-chromedriver@master
-    - name: Download image
-      run: |
-        pushd $GITHUB_WORKSPACE/parser
-        pipenv run python zmk2kle.py -l -i ../config/3x5.dtsi
-        ls -l $GITHUB_WORKSPACE || true
-        ls -l $GITHUB_WORKSPACE/parser || true
-        mv $GITHUB_WORKSPACE/parser/keyboard-layout.png $GITHUB_WORKSPACE || true
-        popd
-    - name: Upload image
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ github.actor }}-keyboard-layout.png
-        path: |
-          *.png
-        retention-days: 7
-    - name: Commit updated image
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: "[Skip CI] Automated keymap render"
-        file_pattern: keyboard-layout.png
+    uses: jbarr21/keymap-display/.github/workflows/render-keymap.yml@main
+    with:
+      keymap_type: nf
+      keymap_path: config/3x5.dtsi
