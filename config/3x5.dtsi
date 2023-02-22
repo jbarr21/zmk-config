@@ -23,37 +23,49 @@
 #define MED 7
 #define LCK 8
 
-// RGB placeholders
-#define RGB_VAI &none
-#define RGB_SAI &none
-#define RGB_HUI &none
-#define RGB_MOD &none
-#define RGB_TOG &none
-
-// Define shortcuts
 #define ___      &none
-#define _HELD_   &none
-#define VIMAC    LG(LS(SPACE))
-#define ALFR     LG(SPACE)
-#define CTXS     LA(TAB)
-#define HIST_BK  LG(LBKT)
-#define HIST_FW  LG(RBKT)
-#define TAB_LT   LS(LG(LBKT))
-#define TAB_RT   LS(LG(RBKT))
-#define APP_WIN  LG(GRAVE)
-#define HYPER    LG(LS(LA(LCTRL)))
-#define MEH      LS(LA(LCTRL))
 
-// IJ shortcuts
-#define CLS_METH LG(F12)
-#define FIND_USE LA(F7)
-#define RENAME   LS(F6)
-#define BRK_PT   LG(F8)
-#define DBG_OVER F8
-#define DBG_IN   F7
-#define DBG_OUT  LS(F8)
-#define DBG_RES  LA(LG(R))
-#define DBG_EVAL LA(F8)
+#ifdef KEYMAP_DISPLAY
+    // Ensure that custom keys are undefined so they display as labels
+    #define _HELD_  &held
+    #define RGB_VAI &kp RGB_VAI
+    #define RGB_SAI &kp RGB_SAI
+    #define RGB_HUI &kp RGB_HUI
+    #define RGB_MOD &kp RGB_MOD
+    #define RGB_TOG &kp RGB_TOG
+#else
+    #define _HELD_  &none
+    
+    // RGB placeholders
+    #define RGB_VAI &none
+    #define RGB_SAI &none
+    #define RGB_HUI &none
+    #define RGB_MOD &none
+    #define RGB_TOG &none
+
+    // Define shortcuts
+    #define VIMAC    LG(LS(SPACE))
+    #define ALFR     LG(SPACE)
+    #define CTXS     LA(TAB)
+    #define HIST_BK  LG(LBKT)
+    #define HIST_FW  LG(RBKT)
+    #define TAB_LT   LS(LG(LBKT))
+    #define TAB_RT   LS(LG(RBKT))
+    #define APP_WIN  LG(GRAVE)
+    #define HYPER    LG(LS(LA(LCTRL)))
+    #define MEH      LS(LA(LCTRL))
+
+    // IJ shortcuts
+    #define CLS_METH LG(F12)
+    #define FIND_USE LA(F7)
+    #define RENAME   LS(F6)
+    #define BRK_PT   LG(F8)
+    #define DBG_OVER F8
+    #define DBG_IN   F7
+    #define DBG_OUT  LS(F8)
+    #define DBG_RES  LA(LG(R))
+    #define DBG_EVAL LA(F8)
+#endif
 
 #include "combos.dtsi"  // must be sourced after layer-shortcuts
 #include "mouse.dtsi"
