@@ -9,5 +9,6 @@ jobs:
   render:
     uses: jbarr21/keymap-display/.github/workflows/render-keymap.yml@main
     with:
+      output_type: kle
       keymap_type: nf
       keymap_path: config/3x5.dtsi
