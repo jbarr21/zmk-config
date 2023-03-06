@@ -102,10 +102,9 @@ ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
 )
 
 &mt {
-    flavor = "tap-preferred";
-    tapping-term-ms = <220>;
-    quick-tap-ms = <220>;
-    hold-trigger-key-positions = <0>;
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
 };
 
 &lt {
