@@ -1,11 +1,15 @@
 manifest:
   remotes:
+    - name: zmk
+      url-base: https://github.com/zmk_firmware
     - name: urob
       url-base: https://github.com/urob
+    - name: jbarr21
+      url-base: https://github.com/jbarr21
   projects:
     - name: zmk
-      remote: urob
-      revision: main
+      remote: jbarr21
+      revision: urob
       import: app/west.yml
   self:
     path: config
