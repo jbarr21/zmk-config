@@ -40,11 +40,6 @@
 
 / {
 
-    sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&encoder_1 &encoder_2 &encoder_3>;
-    };
-
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -72,8 +67,6 @@
         default_layer {
             label = "Default";
 
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN &inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN &inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-
             bindings = <
     &kp ESC    &kp Q        &kp W        &kp F       &kp P         &kp B                                       &kp J         &kp L        &lt WINNAV U  &kp Y       &kp SEMI    &kp BSLH
     &kp TAB    &hm LCTL A   &hm LGUI R   &hm LALT S  &hs LSHIFT T  &kp G                                       &lt MOUSE M   &hs RSHIFT N &hm RALT E    &hm RGUI I  &hm RCTL O  &kp SQT
@@ -85,8 +78,6 @@
         nav_layer {
             label = "Navigation";
             
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN &inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN &inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-            
             bindings = <
     &trans     &kp ESC      &kp PG_UP    &kp UP      &kp PG_DN     &trans                                      &kp ASTRK     &kp N7       &kp N8        &kp N9      &kp MINUS   &trans
     &trans     &kp HOME     &kp LEFT     &kp DOWN    &kp RIGHT     &kp END                                     &kp FSLH      &kp N4       &kp N5        &kp N6      &kp PLUS    &trans
@@ -97,8 +88,6 @@
 
         sym_layer {
             label = "Symbols";
-            
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN &inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN &inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             
             bindings = <
     &trans     &kp EXCL     &kp AT       &kp HASH        &kp DLLR         &kp PRCNT                                   &kp CARET     &kp AMPS          &kp ASTRK     &kp UNDER   &kp EQUAL   &trans
