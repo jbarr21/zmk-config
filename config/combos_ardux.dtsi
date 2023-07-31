@@ -1,0 +1,70 @@
+/*  KEY POSITIONS
+ *
+  ╭──────────────╮
+  │  0  1  2  3  │
+  │  4  5  6  7  │
+  ╰──────────────╯ */
+
+#define COMBO(NAME, BINDINGS, KEYPOS, LAYERS) \
+        combo_##NAME { \
+            timeout-ms = <50>; \
+            bindings = <BINDINGS>; \
+            key-positions = <KEYPOS>; \
+            layers = <LAYERS>; \
+        };
+
+
+COMBO(kp_b, &kp B, 4 7,     DEF)
+COMBO(kp_c, &kp C, 4 5,     DEF)
+COMBO(kp_d, &kp D, 0 1 2,   DEF)
+COMBO(kp_f, &kp F, 0 1,     DEF)
+COMBO(kp_g, &kp G, 1 2,     DEF)
+COMBO(kp_h, &kp H, 4 6,     DEF)
+COMBO(kp_j, &kp J, 2 3,     DEF)
+COMBO(kp_k, &kp K, 5 7,     DEF)
+COMBO(kp_l, &kp L, 4 5 6,   DEF)
+COMBO(kp_m, &kp M, 5 6 7,   DEF)
+COMBO(kp_p, &kp P, 4 6 7,   DEF)
+COMBO(kp_q, &kp Q, 0 2 3,   DEF)
+COMBO(kp_u, &kp U, 5 6,     DEF)
+COMBO(kp_v, &kp V, 1 3,     DEF)
+COMBO(kp_w, &kp W, 0 3,     DEF)
+COMBO(kp_x, &kp X, 1 2 3,   DEF)
+COMBO(kp_y, &kp Y, 0 2,     DEF)
+COMBO(kp_z, &kp Z, 0 1 2 3, DEF)
+
+COMBO(sk_g, &sk LGUI,  3 5,     DEF)
+COMBO(sk_s, &sk LSHFT, 1 2 3 4, DEF)
+COMBO(sk_a, &sk LALT,  3 6,     DEF)
+COMBO(sk_c, &sk LCTRL, 3 4,     DEF)
+
+COMBO(kp_ret,  &kp RET,   0 4,   DEF)
+COMBO(kp_esc,  &kp ESC,   0 1 7, DEF)
+COMBO(kp_com,  &kp COMMA, 0 5 6, DEF)
+COMBO(kp_dot,  &kp DOT,   0 5,   DEF)
+COMBO(kp_sqt,  &kp SQT,   0 6,   DEF)
+COMBO(kp_slsh, &kp FSLH,  0 7,   DEF)
+COMBO(kp_excl, &kp EXCL,  2 6,   DEF)
+
+COMBO(kp_tab,  &kp TAB,    0 1 2 7, DEF)
+COMBO(kp_spc,  &kp SPACE,  4 5 6 7, DEF)
+COMBO(kp_bspc, &kp BSPC,   1 4,     DEF)
+COMBO(kp_del,  &kp DEL,    1 6,     DEF)
+
+COMBO(capswrd, &caps_word, 0 5 6 7, DEF)
+
+COMBO(kp_bt_s, &sl BT,     0 3 4 7, DEF)
+COMBO(kp_bt_c, &bt BT_CLR, 1 2 5 6, DEF)
+
+COMBO(kp_7, &kp N7, 0 1,    NUM)
+COMBO(kp_8, &kp N8, 1 2,    NUM)
+COMBO(kp_9, &kp N9, 4 5,    NUM)
+COMBO(kp_0, &kp N0, 5 6,    NUM)
+
+COMBO(to_nav, &to NAV, 1 4 6, DEF)
+COMBO(to_mou, &to MOU, 0 2 5, DEF)
+
+COMBO(to_def1, &to DEF, 1 4 6, NAV)
+COMBO(to_def2, &to DEF, 0 2 5, MOU)
+
+COMBO(boot, &bootloader, 0 1 4 5, CUS)
