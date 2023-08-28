@@ -7,7 +7,7 @@ Also see my [QMK userspace](https://github.com/jbarr21/qmk_userspace/) for equiv
 Build with Docker:
 ```sh
 docker run -it --rm -w="/zmk" \
-    -v $(realpath .):/zmk-config \
+    -v $(realpath ../zmk-config):/zmk-config \
     -v $(realpath ../zmk):/zmk \
     zmkfirmware/zmk-dev-arm:3.2-branch /bin/bash
 
