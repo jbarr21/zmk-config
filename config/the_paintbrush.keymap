@@ -109,7 +109,7 @@
             label = "MOU";
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────╮
-     &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT
+     &mmv MS_LEFT  &mmv MS_DOWN  &mmv MS_UP    &mmv MS_RIGHT
 // ├─────────────┼─────────────┼─────────────┼─────────────┼
      &mkp MB1      &mwh WH_DOWN  &mwh WH_UP    &mkp MB2
 // ╰─────────────┴─────────────┴─────────────┴─────────────╯
