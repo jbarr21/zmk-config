@@ -1,0 +1,112 @@
+layout:
+  ortho_layout:
+    rows: 2
+    columns: 4
+draw_config:
+  combo_h: 22
+  combo_w: 24
+  arc_radius: 12
+layout:
+  ortho_layout:
+    rows: 2
+    columns: 4
+layers:
+  DEF:
+  - - {t: A, h: PAR}
+    - R
+    - S
+    - {t: T, h: FUN}
+  - - {t: N, h: SYM}
+    - E
+    - I
+    - {t: O, h: CUS}
+  SYM:
+  - ['!', \, ;, '~']
+  - - {type: held}
+    - '?'
+    - '-'
+    - '='
+  PAR:
+  - - {type: held}
+    - (
+    - )
+    - '{'
+  - ['', '[', ']', '}']
+  NAV:
+  - [LEFT, DOWN, UP, RIGHT]
+  - [HOME, PG DN, PG UP, END]
+  NUM:
+  - ['1', '2', '3', '']
+  - ['4', '5', '6', '']
+  FUN:
+  - - F1
+    - F2
+    - F3
+    - {type: held}
+  - [F4, F5, F6, '']
+  MOU:
+  - [LEFT, DOWN, UP, RIGHT]
+  - ['&mkp MB1', '&mwh WH_DOWN', '&mwh WH_UP', '&mkp MB2']
+  CUS:
+  - - {t: LGUI, h: sticky}
+    - {t: LSHFT, h: sticky}
+    - {t: LALT, h: sticky}
+    - {t: LCTRL, h: sticky}
+  - - PP
+    - VOL UP
+    - VOL DN
+    - {type: held}
+  BT:
+  - - {t: BT, h: '0'}
+    - {t: BT, h: '1'}
+    - {t: BT, h: '2'}
+    - OUT BLE
+  - - {t: BT, h: '3'}
+    - {t: BT, h: '4'}
+    - {t: BT, h: '5'}
+    - OUT USB
+combos:
+  - {p: [3, 7],       k: ENT, a: right, arc_scale: 0.6}
+  - {p: [5, 2],       k: DEL, d: true}
+  - {p: [2, 6],       k: 'SFT'}
+  - {p: [7, 6],       k: C,    l: [DEF]}
+  - {p: [5, 4],       k: N,    l: [DEF]}
+  - {p: [3, 2],       k: F,    l: [DEF]}
+  - {p: [2, 1],       k: G,    l: [DEF]}
+  - {p: [6, 5],       k: U,    l: [DEF]}
+  - {p: [1, 0],       k: J,    l: [DEF]}
+  - {p: [3, 6],       k: .,    l: [DEF], d: True}
+  - {p: [1, 5],       k: '!',  l: [DEF]}
+  - {p: [2, 0],       k: V,    l: [DEF], a: top,    o: 1.75, arc_scale: 1.2}
+  - {p: [3, 2, 1, 0], k: Z,    l: [DEF], a: top,    o: 1.45, arc_scale: 1.1}
+  - {p: [3, 1, 0],    k: Q,    l: [DEF], a: top,    o: 1.0,  arc_scale: 1.05, slide: -0.2}
+  - {p: [3, 0],       k: W,    l: [DEF], a: top,    o: 0.55,                  slide: -0.1}
+  - {p: [3, 2, 1],    k: D,    l: [DEF], a: top,    o: 0.25, arc_scale: 0.75, slide: -0.2}
+  - {p: [2, 1, 0],    k: X,    l: [DEF], a: top,    o: 0.0,  arc_scale: 0.75, slide: -0.45}
+  - {p: [6, 4],       k: K,    l: [DEF], a: bottom, o: 1.75, arc_scale: 1.3}
+  - {p: [7, 5],       k: H,    l: [DEF], a: bottom, o: 1.5,  arc_scale: 0.97}
+  - {p: [7, 6, 5, 4], k: SPC,  l: [DEF], a: bottom, o: 1.2,  arc_scale: 1.15}
+  - {p: [7, 5, 4],    k: P,    l: [DEF], a: bottom, o: 0.75, arc_scale: 1.05, slide: 0.0}
+  - {p: [7, 6, 5],    k: L,    l: [DEF], a: bottom, o: 0.5,  arc_scale: 0.9,  slide: 0.0}
+  - {p: [7, 4],       k: B,    l: [DEF], a: bottom, o: 0.25, arc_scale: 0.9,  slide: 0.0}
+  - {p: [6, 5, 4],    k: M,    l: [DEF], a: bottom, o: 0.0,  arc_scale: 0.7,  slide: -0.4}
+  - {p: [3, 2],       k: '7',  l: [NUM]}
+  - {p: [2, 1],       k: '8',  l: [NUM]}
+  - {p: [7, 6],       k: '9',  l: [NUM]}
+  - {p: [6, 5],       k: '0',  l: [NUM]}
+  - {p: [7, 2],       k: BSPC, l: [NUM, SYM, PAR, NAV, BT, CUS], d: true}
+  - {p: [7, 6, 5, 4], k: SPC,  l: [NUM, SYM, PAR, NAV, BT, CUS], a: bottom}
+# - {p: [3, 5],       k: ',',  l: [DEF]}
+# - {p: [3, 4],       k: /,    l: [DEF]}
+# - {p: [3, 2, 4],    k: ESC}
+# - {p: [2, 7, 5],    k: Nav}
+# - {p: [3, 6, 5],    k: "'", l: [DEF]}
+# - {p: [3, 2, 1, 4], k: TAB}
+# - {p: [7, 2, 1, 0], k: {t: LSHFT, h: sticky}}
+# - {p: [3, 7, 0, 4], k: BT}
+# - {p: [2, 6, 1, 5], k: BT CLR}
+# - {p: [4, 5, 6, 3], k: CAPS, l: [DEF]}
+# - {p: [7, 0],       k: {t: LCTRL, h: sticky}}
+# - {p: [6, 0],       k: {t: LGUI, h: sticky}}
+# - {p: [5, 0],       k: {t: LALT, h: sticky}}
+
