@@ -1,0 +1,4 @@
+#define TWO_THUMBS
+
+#include "../zmk-nodefree-config/keypos_def/keypos_34keys.h"
+#include "3x5.dtsi"
