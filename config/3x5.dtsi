@@ -69,7 +69,7 @@
 
 #include "combos.dtsi"  // must be sourced after layer-shortcuts
 #include "mouse.dtsi"
-#include "xtr_defaults.h"
+#include "extra_keys.h"
 
 /* Homerow mods */
 
