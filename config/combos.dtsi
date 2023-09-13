@@ -19,5 +19,8 @@ ZMK_COMBO(alfrLower, &kp ALFR,    LB1 RB1, DEF)
 ZMK_COMBO(alfrInner, &kp ALFR,    LM0 RM0, DEF)
 ZMK_COMBO(cxts,      &kp CTXS,    LB2 RB2, DEF)
 
+ZMK_COMBO(bootL,     &bootloader, LB4 LM4 LT4, NAV)
+ZMK_COMBO(bootR,     &bootloader, RB4 RM4 RT4, SYM)
+
 ZMK_COMBO(lock,      &to LCK,     RT1 LB3, DEF)
 ZMK_COMBO(unlock,    &to DEF,     RT2 LB3, LCK)

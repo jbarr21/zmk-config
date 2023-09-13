@@ -1,4 +1,5 @@
 #include "../zmk-nodefree-config/keypos_def/keypos_42keys.h"
+#include "extra_keys_thumbs_three.h"
 
 #define XTR_LTO  &none
 #define XTR_LMO  &kp ESC
