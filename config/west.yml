@@ -8,8 +8,8 @@ manifest:
       url-base: https://github.com/jbarr21
   projects:
     - name: zmk
-      remote: jbarr21
-      revision: urob
+      remote: zmk
+      revision: v0.3
       import: app/west.yml
   self:
     path: config
