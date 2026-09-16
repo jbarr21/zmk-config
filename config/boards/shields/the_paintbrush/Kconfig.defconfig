@@ -10,6 +10,7 @@ config SSD1306
 	default n
 
 config SSD1306_REVERSE_MODE
+	bool
 	default n
 
 config LV_Z_VDB_SIZE
