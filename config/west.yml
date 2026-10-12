@@ -11,5 +11,8 @@ manifest:
       remote: zmk
       revision: v0.3
       import: app/west.yml
+    - name: zmk-nodefree-config
+      remote: jbarr21
+      revision: da3481ebc1a9901422e136bb5af38eb207d50d9b
   self:
     path: config
