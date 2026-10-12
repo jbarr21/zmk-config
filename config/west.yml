@@ -1,7 +1,7 @@
 manifest:
   remotes:
     - name: zmk
-      url-base: https://github.com/zmk_firmware
+      url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
     - name: jbarr21
