@@ -9,7 +9,7 @@ Build with Docker:
 docker run -it --rm -w="/zmk" \
     -v $(realpath ../zmk-config):/zmk-config \
     -v $(realpath ../zmk):/zmk \
-    zmkfirmware/zmk-dev-arm:3.2-branch /bin/bash
+    zmkfirmware/zmk-dev-arm:3.5 /bin/bash
 
 west init -l app/ \
     && west update \

@@ -1,15 +1,18 @@
 manifest:
   remotes:
     - name: zmk
-      url-base: https://github.com/zmk_firmware
+      url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
     - name: jbarr21
       url-base: https://github.com/jbarr21
   projects:
     - name: zmk
-      remote: jbarr21
-      revision: urob
+      remote: zmk
+      revision: v0.3
       import: app/west.yml
+    - name: zmk-nodefree-config
+      remote: jbarr21
+      revision: da3481ebc1a9901422e136bb5af38eb207d50d9b
   self:
     path: config

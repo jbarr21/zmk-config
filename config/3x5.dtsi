@@ -75,7 +75,6 @@
 
 #define TAPPING_TERM_MS 280
 #define QUICK_TAP_MS 175
-#define GLOBAL_QUICK_TAP_MS 150
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right-hand keys
@@ -89,7 +88,7 @@ ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <QUICK_TAP_MS>;
-    global-quick-tap-ms = <GLOBAL_QUICK_TAP_MS>;  // requires PR #1387
+    global-quick-tap;                             // supported by ZMK v0.3
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_R THUMBS>;
     hold-trigger-on-release;                      // requires PR #1423
@@ -99,7 +98,7 @@ ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <QUICK_TAP_MS>;
-    global-quick-tap-ms = <GLOBAL_QUICK_TAP_MS>;  // requires PR #1387
+    global-quick-tap;                             // supported by ZMK v0.3
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_L THUMBS>;
     hold-trigger-on-release;                      // requires PR #1423
@@ -241,7 +240,7 @@ ZMK_LAYER(mou,
 // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────┤
     XTR_LMO  &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      ___               &kp F16       &mmv MS_LEFT  &mmv MS_DOWN  &mmv MS_UP   &mmv MS_RIGHT  XTR_RMO  
 // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────┤
-    XTR_LBO  ___           ___           ___           ___           ___               ___           &mwh WH_LEFT  &mwh WH_DOWN  &mwh WH_UP   &mwh WH_RIGHT  XTR_RBO  
+    XTR_LBO  ___           ___           ___           ___           ___               ___           &msc WH_LEFT  &msc WH_DOWN  &msc WH_UP   &msc WH_RIGHT  XTR_RBO  
 // ╰───────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴────────╯
 #ifdef TWO_THUMBS                                         
                                          XTR_LH        ___           ___               &mkp MB1      &mkp MB2      XTR_RH
